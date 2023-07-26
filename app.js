@@ -9,6 +9,8 @@ const passport = require('passport');  // authentication
 const LocalStrategy = require('passport-local');
 const connectEnsureLogin = require('connect-ensure-login'); //authorization
 const User = require('./models/user'); // User Model 
+const helmet = require('helmet');
+const compression = require('compression');
 require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -18,6 +20,16 @@ const mongoDB = process.env.mongoLink;
 const indexRouter = require('./routes/index');
 
 const app = express();
+
+app.use(compression());
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  }),
+);
 
 main().catch((err) => console.log(err));
 async function main() {
