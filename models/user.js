@@ -4,13 +4,7 @@ mongoose.set('strictQuery', false);
 const passportLocalMongoose = require('passport-local-mongoose');
 require('dotenv').config();
 
-main().catch((err) => console.log(err));
-async function main() {
-    await mongoose.connect(process.env.mongoLink,{
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      });
-  }
+
 // Create Model
 const Schema = mongoose.Schema;
 
