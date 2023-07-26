@@ -89,5 +89,61 @@ exports.item_update_get = asyncHandler(async (req, res, next) => {
       title: "Update Item",
       item: item,
     });
-  });
+});
+
+exports.item_update_post = [
+    // Convert the genre to an array.
+    (req, res, next) => {
+      next();
+    },
+  
+    // Validate and sanitize fields.
+    body("room")
+      .trim()
+      .isLength({ min: 1 })
+      .escape()
+      .withMessage("Room must be specified")
+      .isAlphanumeric()
+      .withMessage("Room has non-alphanumeric characters."),
+    body("container")
+      .trim()
+      .isLength({ min: 1 })
+      .escape()
+      .withMessage("Container must be specified.")
+      .isAlphanumeric()
+      .withMessage("Container has non-alphanumeric characters."),
+      body("content")
+      .trim()
+      .isLength({ min: 1 })
+      .escape()
+      .withMessage("Content must be specified."),
+  
+    // Process request after validation and sanitization.
+    asyncHandler(async (req, res, next) => {
+      // Extract the validation errors from a request.
+      const errors = validationResult(req);
+      
+      const item = new Item({
+        room: req.body.room,
+        container: req.body.container,
+        content: req.body.content,
+        _id: req.params.id,
+      });
+  
+      if (!errors.isEmpty()) {
+        // There are errors. Render form again with sanitized values/error messages.
+  
+        res.render("create_form", {
+            title: "Edit Item",
+            item: item,
+            errors: errors.array(),
+        });
+        return;
+      } else {
+        const theitem = await Item.findByIdAndUpdate(req.params.id, item, {});
+        // Redirect to book detail page.
+        res.redirect('/');
+      }
+    }),
+];
 

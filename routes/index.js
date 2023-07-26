@@ -11,4 +11,6 @@ router.post("/create", item_controller.item_create_post);
 
 router.get("/:id/update", item_controller.item_update_get);
 
+router.post("/:id/update", item_controller.item_update_post);
+
 module.exports = router;
