@@ -1,20 +1,42 @@
 var express = require('express');
 var router = express.Router();
 const item_controller = require("../controllers/itemController");
+const connectEnsureLogin = require('connect-ensure-login');
+const passport = require('passport');
+const User = require('../models/user');
+
 
 /* GET home page. */
-router.get("/", item_controller.index);
+router.get("/", connectEnsureLogin.ensureLoggedIn(), item_controller.index);
 
-router.get("/create", item_controller.item_create_get);
+router.get('/login', (req, res, next) => {
+    res.render('login');
+})
 
-router.post("/create", item_controller.item_create_post);
+router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), function(req, res) {
+    console.log(req);
+	res.redirect('/');
+});
 
-router.get("/:id/update", item_controller.item_update_get);
+router.get("/log-out", (req, res, next) => {
+    req.logout(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  });
 
-router.post("/:id/update", item_controller.item_update_post);
+router.get("/create", connectEnsureLogin.ensureLoggedIn(), item_controller.item_create_get);
 
-router.get("/:id/delete", item_controller.item_delete_get);
+router.post("/create", connectEnsureLogin.ensureLoggedIn(), item_controller.item_create_post);
 
-router.post("/:id/delete", item_controller.item_delete_post);
+router.get("/:id/update", connectEnsureLogin.ensureLoggedIn(), item_controller.item_update_get);
+
+router.post("/:id/update", connectEnsureLogin.ensureLoggedIn(), item_controller.item_update_post);
+
+router.get("/:id/delete", connectEnsureLogin.ensureLoggedIn(), item_controller.item_delete_get);
+
+router.post("/:id/delete", connectEnsureLogin.ensureLoggedIn(), item_controller.item_delete_post);
 
 module.exports = router;
