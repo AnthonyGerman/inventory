@@ -147,3 +147,27 @@ exports.item_update_post = [
     }),
 ];
 
+exports.item_delete_get = asyncHandler(async (req, res, next) => {
+    // Get details of author and all their books (in parallel)
+    const item = await Item.findById(req.params.id).exec();
+  
+    if (item === null) {
+      // No results.
+      res.redirect("/");
+    }
+  
+    res.render("item_delete", {
+      title: "Delete Item",
+      item: item,
+    });
+});
+
+exports.item_delete_post = asyncHandler(async (req, res, next) => {
+    // Get details of author and all their books (in parallel)
+    const item = await Item.findById(req.params.id).exec();
+  
+    // Author has no books. Delete object and redirect to the list of authors.
+    await Item.findByIdAndRemove(req.body.itemid);
+    res.redirect("/");
+});
+
