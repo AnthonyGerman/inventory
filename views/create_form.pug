@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group
+      input#room.form-control(type='text', placeholder='Room' name='room' required='true' value=(undefined===item ? '' : item.room) )
+      br
+      input#container.form-control(type='text', placeholder='Container' name='container' value=(undefined===item ? '' : item.container) )
+      br
+      input#content.form-control(type='text', placeholder='Content' name='content' required='true' value=(undefined===item ? '' : item.content) )
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

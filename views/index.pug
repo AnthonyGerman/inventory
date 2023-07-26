@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a(href='/create') Add Item
   p #{item_count} Items
   table 
     tr 
@@ -13,3 +14,5 @@ block content
         td= item.room
         td= item.container
         td= item.content
+        td
+          a(href=item._id + '/update') Edit
