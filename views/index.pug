@@ -3,3 +3,13 @@ extends layout
 block content
   h1= title
   p #{item_count} Items
+  table 
+    tr 
+      th Room
+      th Container 
+      th Content
+    each item in item_list
+      tr
+        td= item.room
+        td= item.container
+        td= item.content
