@@ -13,12 +13,14 @@ block content
         option(value='Hallway') Hallway
         option(value='Office') Office
         option(value='Closet') Closet
+        option(value='Home') Home
       br
       input#container.form-control(type='text', placeholder='Container' name='container' value=(undefined===item ? '' : item.container) )
       br
       input#content.form-control(type='text', placeholder='Content' name='content' required='true' value=(undefined===item ? '' : item.content) )
     button.btn.btn-primary(type='submit') Submit
-
+  br
+  a(href='/') Cancel
   if errors
     ul
       for error in errors
