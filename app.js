@@ -30,7 +30,7 @@ async function main() {
 }
 
 app.use(session({
-  secret: 'r8q,+&1LM3)CD*zAGpx1xm{NeQhc;#',
+  secret: process.env.secret,
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
@@ -58,7 +58,6 @@ passport.use(
       })
       return done(null, user);
     } catch(err) {
-      console.log('help')
       return done(err);
     };
   })
