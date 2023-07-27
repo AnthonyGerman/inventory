@@ -3,6 +3,15 @@ extends layout
 block content
   h1= title
   a(href='/create') Add Item
+  br
+  br
+  input(type='text' placeholder='Search' oninput='myFunction()')
+  select(name='filter' onchange='myFunction()')
+    option(value='Room') Room
+    option(value='Container') Container
+    option(value='Content') Content
+  br
+  br
   p #{item_count} Items
   table 
     tr 

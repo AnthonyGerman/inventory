@@ -24,14 +24,6 @@ const app = express();
 
 app.use(compression());
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
-    },
-  }),
-);
-
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
@@ -51,7 +43,6 @@ app.use(passport.session());
 passport.use(
   new LocalStrategy(async(username, password, done) => {
     try {
-      console.log('help')
       const user = await User.findOne({ username: username });
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
