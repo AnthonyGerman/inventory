@@ -30,7 +30,7 @@ async function main() {
 }
 
 app.use(session({
-  secret: process.env.secret,
+  secret: 'r8q,+&1LM3)CD*zAGpx1xm{NeQhc;#',
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
