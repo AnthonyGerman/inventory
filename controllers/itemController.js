@@ -26,16 +26,12 @@ exports.item_create_post = [
       .trim()
       .isLength({ min: 1 })
       .escape()
-      .withMessage("Room must be specified")
-      .isAlphanumeric()
-      .withMessage("Room has non-alphanumeric characters."),
+      .withMessage("Room must be specified"),
     body("container")
       .trim()
       .isLength({ min: 1 })
       .escape()
-      .withMessage("Container must be specified.")
-      .isAlphanumeric()
-      .withMessage("Container has non-alphanumeric characters."),
+      .withMessage("Container must be specified."),
       body("content")
       .trim()
       .isLength({ min: 1 })
@@ -102,16 +98,12 @@ exports.item_update_post = [
       .trim()
       .isLength({ min: 1 })
       .escape()
-      .withMessage("Room must be specified")
-      .isAlphanumeric()
-      .withMessage("Room has non-alphanumeric characters."),
+      .withMessage("Room must be specified"),
     body("container")
       .trim()
       .isLength({ min: 1 })
       .escape()
-      .withMessage("Container must be specified.")
-      .isAlphanumeric()
-      .withMessage("Container has non-alphanumeric characters."),
+      .withMessage("Container must be specified."),
       body("content")
       .trim()
       .isLength({ min: 1 })
