@@ -5,7 +5,14 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      input#room.form-control(type='text', placeholder='Room' name='room' required='true' value=(undefined===item ? '' : item.room) )
+      select#room.form-control(name='room' required='true' value=(undefined===item ? '' : item.room) )
+        option(value='Kitchen') Kitchen
+        option(value='Molecular') Molecular 
+        option(value='Mouse Room') Mouse Room
+        option(value='Cell Culture') Cell Culture 
+        option(value='Hallway') Hallway
+        option(value='Office') Office
+        option(value='Closet') Closet
       br
       input#container.form-control(type='text', placeholder='Container' name='container' value=(undefined===item ? '' : item.container) )
       br
