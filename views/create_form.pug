@@ -5,7 +5,8 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      select#room.form-control(name='room' required='true' value=(undefined===item ? '' : item.room) )
+      input#room.form-control(name='room' list='rooms' required='true' value=(undefined===item ? '' : item.room) )
+      datalist(id='rooms')
         option(value='Kitchen') Kitchen
         option(value='Molecular') Molecular 
         option(value='Mouse Room') Mouse Room
@@ -25,3 +26,5 @@ block content
     ul
       for error in errors
         li!= error.msg
+  script. 
+    console.log('hi');
