@@ -3,6 +3,7 @@ function myFunction() {
   var input, filter, table, tr, td, i, txtValue, selector, y, count, x;
   input = document.querySelector('input');
   filter = input.value.toUpperCase();
+  localStorage.setItem('search', filter);
   table = document.querySelector('table');
   tr = table.getElementsByTagName("tr");
   x = 0;
@@ -25,4 +26,9 @@ function myFunction() {
     }
     count.textContent = x + ' Items';
   }
+}
+
+function myOtherFunction() {
+  input = document.querySelector('input');
+  input.value = localStorage.getItem('search');
 }
