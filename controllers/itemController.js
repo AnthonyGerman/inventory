@@ -39,17 +39,14 @@ exports.item_create_post = [
     body("room")
       .trim()
       .isLength({ min: 1 })
-      .escape()
       .withMessage("Room must be specified"),
     body("container")
       .trim()
       .isLength({ min: 1 })
-      .escape()
       .withMessage("Container must be specified."),
       body("content")
       .trim()
       .isLength({ min: 1 })
-      .escape()
       .withMessage("Content must be specified."),
   
     // Process request after validation and sanitization.
@@ -111,17 +108,14 @@ exports.item_update_post = [
     body("room")
       .trim()
       .isLength({ min: 1 })
-      .escape()
       .withMessage("Room must be specified"),
     body("container")
       .trim()
       .isLength({ min: 1 })
-      .escape()
       .withMessage("Container must be specified."),
       body("content")
       .trim()
       .isLength({ min: 1 })
-      .escape()
       .withMessage("Content must be specified."),
   
     // Process request after validation and sanitization.
