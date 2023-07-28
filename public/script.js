@@ -31,4 +31,5 @@ function myFunction() {
 function myOtherFunction() {
   input = document.querySelector('input');
   input.value = localStorage.getItem('search');
+  myFunction();
 }
