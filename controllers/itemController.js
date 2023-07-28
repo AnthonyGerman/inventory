@@ -41,9 +41,7 @@ exports.item_create_post = [
       .isLength({ min: 1 })
       .withMessage("Room must be specified"),
     body("container")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Container must be specified."),
+      .trim(),
       body("content")
       .trim()
       .isLength({ min: 1 })
@@ -110,9 +108,7 @@ exports.item_update_post = [
       .isLength({ min: 1 })
       .withMessage("Room must be specified"),
     body("container")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Container must be specified."),
+      .trim(),
       body("content")
       .trim()
       .isLength({ min: 1 })
