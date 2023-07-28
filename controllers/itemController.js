@@ -14,6 +14,20 @@ exports.index = asyncHandler(async (req, res, next) => {
     });
 });
 
+exports.index_post = asyncHandler(async (req, res, next) => {
+  const obj = eval('({' + req.body.info + '})');
+  console.log(obj);
+  // Get details of books, book instances, authors and genre counts (in parallel)
+  const numItems = await Item.countDocuments(obj).exec();
+  const allItems = await Item.find(obj).exec();
+
+  res.render("index", {
+    title: "Inventory",
+    item_count: numItems,
+    item_list: allItems
+  });
+});
+
 exports.item_create_get = (req, res, next) => {
     res.render("create_form", {
         title: "Add Item"

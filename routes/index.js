@@ -9,6 +9,8 @@ const User = require('../models/user');
 /* GET home page. */
 router.get("/", connectEnsureLogin.ensureLoggedIn(), item_controller.index);
 
+router.post('/', connectEnsureLogin.ensureLoggedIn(), item_controller.index_post);
+
 router.get('/login', (req, res, next) => {
     res.render('login');
 })

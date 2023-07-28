@@ -5,12 +5,20 @@ block content
   a(href='/create') Add Item
   br
   br
-  input(type='text' placeholder='Search' oninput='myFunction()')
+  input.form-control(type='text' placeholder='Search' oninput='myFunction()')
   select(name='filter' onchange='myFunction()')
+    option(value='Content') Content
     option(value='Room') Room
     option(value='Container') Container
-    option(value='Content') Content
+    
   br
+  br
+  form(action='' method='POST')
+    input.form-control(type='text' placeholder='Advanced Search' name='info')
+    input(type='submit')
+  div Examples:
+  div $and: [ { content: /200/ }, { content: /pen/ } ]
+  div $or: [ { room: 'Kitchen' }, { container: /L/ } ]
   br
   p #{item_count} Items
   table 
